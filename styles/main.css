@@ -68,7 +68,7 @@ body {
    /* assignment 9 active psuedo-class to change backgound to white and text to purple */
 .links-container .navbar-link:active {
     background-color: white;
-     test: rgb(233,50,117);
+     text: rgb(233,50,117);
 
 
 /* Medium and small screens (640px) */
