@@ -70,7 +70,14 @@ body {
     background-color: white;
      text: rgb(233,50,117);
 
+/* added by exercise 10 album view */
+    
+ .container.narrow {
+     max-width: 56rem;
+ }
 
+    
+    
 /* Medium and small screens (640px) */
  @media (min-width: 40rem) {
    /* Style information will go here */
