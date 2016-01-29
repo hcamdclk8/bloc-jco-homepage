@@ -2,7 +2,7 @@ var pointsArray = document.getElementsByClassName('point');
  
 var animatePoints = function(points) {
 
-    var revealPoint = function(index) {
+    /*var revealPoint = function(index) {
      points[index].style.opacity = 1;
      points[index].style.transform = "scaleX(1) translateY(0)";
      points[index].style.msTransform = "scaleX(1) translateY(0)";
@@ -11,7 +11,9 @@ var animatePoints = function(points) {
 
     for (i=0; i < points.length; i++) {
     revealPoint(i);
-    };
+    };*/
+    
+    forEach(points);
 };
 
 /* CH 23 DOM events scroll */
