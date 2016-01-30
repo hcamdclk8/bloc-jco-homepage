@@ -70,6 +70,13 @@ body {
     background-color: white;
      text: rgb(233,50,117);
 
+   
+ .container {
+     margin: 0 auto;
+     max-width: 64rem;
+ }
+
+    
 /* added by exercise 10 album view */
     
  .container.narrow {
