@@ -30,6 +30,24 @@
      ]
  };
 
+ // CH 25 Assignment
+ var albumMadonna = {
+     name: 'Like A Virgin',
+     artist: 'Madonna',
+     label: 'Sire Records',
+     year: '1985',
+     albumArtUrl: 'assets/images/album_covers/15.png',
+     songs: [
+         { name: 'Material Girl', length: '1:01' },
+         { name: 'Angel', length: '5:01' },
+         { name: 'Dress You Up', length: '3:55'},
+         { name: 'Like A Virgin', length: '3:14' },
+         { name: 'Over and Over', length: '2:15'},
+         { name: 'Stay', length: '4:08'},
+         { name: 'Pretender', length: '5:15'}
+     ]
+ };
+
 
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -43,29 +61,45 @@
      return template;
  };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+
 var setCurrentAlbum = function(album) {
-     // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
  
-     // #2
+     // Assign values to each part of album ie text, images
      albumTitle.firstChild.nodeValue = album.name;
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
      albumImage.setAttribute('src', album.albumArtUrl);
  
-     // #3
+     // clear album song list container
      albumSongList.innerHTML = '';
  
-     // #4
+     // build list of songs from album.js 
      for (i = 0; i < album.songs.length; i++) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
      }
  };
  
  window.onload = function() {
-     setCurrentAlbum(albumMarconi);
+     setCurrentAlbum(albumMadonna);
+     
+     var albums = [albumPicasso, albumMarconi, albumMadonna]
+     var index = 0;
+     
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if (index == albums.length) {
+             index = 0;
+         }
+         
+     })
+     ;
  };
+
