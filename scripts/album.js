@@ -52,7 +52,7 @@
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
-      + '  <td class="song-item-number">' + songNumber + '</td>'
+      + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
       + '  <td class="song-item-duration">' + songLength + '</td>'
       + '</tr>'
@@ -61,15 +61,15 @@
      return template;
  };
 
-var albumTitle = document.getElementsByClassName('album-view-title')[0];
-var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-var albumImage = document.getElementsByClassName('album-cover-art')[0];
-var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 
 var setCurrentAlbum = function(album) {
 
+    var albumTitle = document.getElementsByClassName('album-view-title')[0];
+    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
  
      // Assign values to each part of album ie text, images
      albumTitle.firstChild.nodeValue = album.name;
@@ -85,11 +85,12 @@ var setCurrentAlbum = function(album) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
      }
  };
- 
- window.onload = function() {
+
+/* CH 25 assignment - album cover shuffle on click */
+/* window.onload = function() {
      setCurrentAlbum(albumMadonna);
      
-     var albums = [albumPicasso, albumMarconi, albumMadonna]
+  /*   var albums = [albumPicasso, albumMarconi, albumMadonna]
      var index = 0;
      
      albumImage.addEventListener("click", function(event) {
@@ -97,9 +98,40 @@ var setCurrentAlbum = function(album) {
          index++;
          if (index == albums.length) {
              index = 0;
-         }
+         } 
          
-     })
-     ;
- };
+     });*/
+ //};  
 
+/** CH 26 exercise - put listener on mouseover **/
+
+ var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
+ var songRows = document.getElementsByClassName('album-view-song-item');
+
+ // Album button templates
+ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+
+ window.onload = function() {
+     setCurrentAlbum(albumMadonna);
+
+     songListContainer.addEventListener('mouseover', function(event) {
+         // #1
+         console.log(event.target);
+                 // Only target individual song rows during event delegation
+         if (event.target.parentElement.className === 'album-view-song-item') {
+             // Change the content from the number to the play button's HTML
+         event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+         }
+     });
+     
+     // CH 26 effect of when mouse leaves song list //
+     
+         for (i = 0; i < songRows.length; i++) {
+         songRows[i].addEventListener('mouseleave', function(event) {
+           
+             // Selects first child element, which is the song-item-number element
+             this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+         });
+     }
+     
+ }
