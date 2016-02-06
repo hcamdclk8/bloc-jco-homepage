@@ -87,7 +87,11 @@
      line-height: 28px;
  }
 
+/* JCO addition */
 
+.album-view-song-item:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 /* making album view responsive via media queries CH 10 */
 
  /* #2 */
