@@ -42,12 +42,15 @@
      margin: 1.5rem auto;
      font-weight: 300;
      font-size: 0.75em;
+    
  }
  
  .album-view-song-item {
      height: 3rem;
      /* #1 */
      border-bottom: 1px solid rgba(255,255,255,0.5);
+     transition: all 0.5s;
+     
  }
  
  .song-item-number {
@@ -74,6 +77,7 @@
      display: inline-block;
      width: 28px;
      height: 28px;
+     
  }
  
  .album-song-button:hover {
@@ -91,6 +95,8 @@
 
 .album-view-song-item:hover {
     background-color: rgba(255, 255, 255, 0.3);
+  
+    
 }
 /* making album view responsive via media queries CH 10 */
 

@@ -73,6 +73,13 @@ var createSongRow = function(songNumber, songName, songLength) {
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
+        } else if (currentlyPlayingSongNumber === songNumber) {
+             if (currentSoundFile.isPaused()) {
+                songNumberCell.html(playButtonTemplate);
+             }
+             else {
+                songNumberCell.html(pauseButtonTemplate);  
+             }
         }
     };
 
@@ -82,6 +89,13 @@ var createSongRow = function(songNumber, songName, songLength) {
         console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(songNumber);
+                } else if (currentlyPlayingSongNumber === songNumber) {
+             if (currentSoundFile.isPaused()) {
+                songNumberCell.html(songNumber);
+             }
+             else {
+                songNumberCell.html(pauseButtonTemplate);  
+             }
         }
     };
     
@@ -89,6 +103,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      $row.hover(onHover, offHover);
      return $row;
  };
+
 
  var setCurrentAlbum = function(album) {
      currentAlbum = album;
@@ -211,6 +226,48 @@ var previousSong = function() {
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
+    setSong(1);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
+    $playPause.click(togglePlayFromPlayerBar);
 });
+
+///CH 33 Assignment Make play and pause in player bar responsive
+
+var togglePlayFromPlayerBar2 = function () {
+    
+    setCurrentAlbum(albumMadonna);
+        $(".navbar").animate({
+        left: '250px',
+        opacity: '0.5',
+        height: '100px',
+        width: '-800px'
+        });
+
+};
+
+var $playPause = $('.main-controls .play-pause');
+
+
+var togglePlayFromPlayerBar = function() {
+ 
+    var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+    
+    
+    if (currentSoundFile.isPaused())  {
+    
+       //play song ?
+       currentSoundFile.play();
+       $('.main-controls .play-pause').html(playerBarPauseButton);
+       currentlyPlayingCell.html(pauseButtonTemplate);
+      
+  } else {
+      currentSoundFile.pause();
+      $('.main-controls .play-pause').html(playerBarPlayButton);
+      currentlyPlayingCell.html(currentlyPlayingSongNumber);
+
+    }
+    
+};
+
+
