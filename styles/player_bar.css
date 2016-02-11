@@ -90,7 +90,7 @@
  
  .seek-bar .fill {
      background: white;
-     width: 67%;
+     width: 0%;
      height: 0.25rem;
      border-radius: 2px;
  }
@@ -100,7 +100,7 @@
      height: 0.5rem;
      width: 0.5rem;
      background: red;
-     left: 36%;
+     left: 0%;
      top: 50%;
      /* #1 * Negative account for size increase, hold it in place and not affect other elements*/
      margin-left: -0.25rem;
@@ -109,7 +109,10 @@
      cursor: pointer;
      -webkit-transition: all 100ms ease-in-out;
         -moz-transition: all 100ms ease-in-out;
-             transition: all 100ms ease-in-out;
+             transition: width 100ms ease-in-out,
+                 height 100ms ease-in-out,
+                 margin-top 100ms ease-in-out,
+                 margin-left 100ms ease-in-out;
  }
  
  .seek-bar:hover .thumb {
