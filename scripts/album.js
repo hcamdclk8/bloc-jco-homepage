@@ -37,11 +37,12 @@ var getSongNumberCell = function(number) {
 };
 
 var createSongRow = function(songNumber, songName, songLength) {
+    //var songLength = new buzz.toTimer(currentSoundFile.getDuration());
     var template =
     '<tr class="album-view-song-item">'
     + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
     + '<td class="song-item-title">' + songName + '</td>'
-    + '<td class="song-item-duration">' + songLength + '</td>'
+    + '<td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
     + '</tr>'
     ;
  
@@ -161,6 +162,8 @@ var createSongRow = function(songNumber, songName, songLength) {
              var $seekBar = $('.seek-control .seek-bar');
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             setCurrentTimeInPlayerBar();
+             
          });
      }
  };
@@ -276,10 +279,13 @@ var nextSong = function() {
     }
     
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    //currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex + 1);
     currentSoundFile.play();
+    updatePlayerBarSong();
     updateSeekBarWhileSongPlays();
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    //currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    
 
     // Update the Player Bar information
     $('.currently-playing .song-name').text(currentSongFromAlbum.name);
@@ -313,10 +319,13 @@ var previousSong = function() {
     }
     
     // Set a new current song
-    currentlyPlayingSongNumber = currentSongIndex + 1;
+    //currentlyPlayingSongNumber = currentSongIndex + 1;
+    setSong(currentSongIndex +1);
     currentSoundFile.play();
+    updatePlayerBarSong();
     updateSeekBarWhileSongPlays();
-    currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    //currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
+    
 
     // Update the Player Bar information
     $('.currently-playing .song-name').text(currentSongFromAlbum.name);
@@ -336,10 +345,11 @@ var previousSong = function() {
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     setupSeekBars();
-    setSong(1);
+    setSong(1); //set default to song #1 on initial load
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
     $playPause.click(togglePlayFromPlayerBar);
+
     
 });
 
@@ -359,15 +369,43 @@ var togglePlayFromPlayerBar = function() {
        currentSoundFile.play();
        $('.main-controls .play-pause').html(playerBarPauseButton);
        currentlyPlayingCell.html(pauseButtonTemplate);
-          
-      
+       updatePlayerBarSong();  /// JCO addition so player bar updates on initial load and initial click from player bar    
+        updateSeekBarWhileSongPlays(); /// JCO addition so player bar updates on initial load and initial click from player bar    
+            var $volumeFill = $('.volume .fill'); /// JCO addition so player bar updates on initial load and initial click from player bar    
+            var $volumeThumb = $('.volume .thumb');/// JCO addition so player bar updates on initial load and initial click from player bar    
+            $volumeFill.width(currentVolume + '%');/// JCO addition so player bar updates on initial load and initial click from player bar    
+            $volumeThumb.css({left: currentVolume + '%'});/// JCO addition so player bar updates on initial load and initial click from player bar    
   } else {
       currentSoundFile.pause();
       $('.main-controls .play-pause').html(playerBarPlayButton);
       currentlyPlayingCell.html(currentlyPlayingSongNumber);
-      
+       updatePlayerBarSong(); /// JCO addition so player bar updates on initial load and initial click from player bar  
+        updateSeekBarWhileSongPlays();/// JCO addition so player bar updates on initial load and initial click from player bar    
+            var $volumeFill = $('.volume .fill');/// JCO addition so player bar updates on initial load and initial click from player bar    
+            var $volumeThumb = $('.volume .thumb');/// JCO addition so player bar updates on initial load and initial click from player bar    
+            $volumeFill.width(currentVolume + '%');/// JCO addition so player bar updates on initial load and initial click from player bar    
+            $volumeThumb.css({left: currentVolume + '%'});/// JCO addition so player bar updates on initial load and initial click from player bar    
     }
     
 };
 
+/// CH 34 assignment play time on seek bar updates both total time and current time
 
+var setCurrentTimeInPlayerBar = function (currentTime) {
+    
+    $('.seek-control .current-time').html(buzz.toTimer(currentSoundFile.getTime()));
+    $('.seek-control .total-time').html(buzz.toTimer(currentSoundFile.getDuration()));
+    
+};
+
+var filterTimeCode = function (timeInSeconds) {
+    var seconds = Math.floor(parseFloat(timeInSeconds % 60));
+    var minutes = Math.floor(timeInSeconds / 60);
+    var format_minutes = minutes + ':';
+
+        if (seconds < 10) {
+            return format_minutes + "0" + seconds;
+        } else 
+            return format_minutes + seconds;
+};
+    
