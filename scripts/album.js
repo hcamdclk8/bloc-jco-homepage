@@ -1,3 +1,82 @@
+// In lieu of $document ready
+$(startUp);
+
+function startUp () {
+    
+    setCurrentAlbum(albumPicasso);
+    displayDailyQuote();   
+}
+
+// set up the quotes in an array as part of an object 
+var data = {
+    dailyQuotes: [
+         'I Can. I Will. I Must.',
+         'Every opportunity has a shelf life.',
+         'Believe in yourself, you are the only one who knows self the longest.',
+         'We control our own destiny.',
+         'You only live once. If you live it right, once is enough.',
+         'Peace is not found in what surrounds us, but in what we hold within.',
+         'There\'s an end to everything.',
+         'A journey of a thousand miles begins with a single step.',
+         'Try and try until you succeed.',
+         'Enjoy the \'present\', it is a gift after all.',
+         'If a man knows not what habor he seeks, no amount of light will be enough to guide him.'
+         ],
+    magicNumber: 7
+}
+
+// set counter to 0, create a function to loop thru array and fade it in
+function displayDailyQuote (){
+     var elem = $('.currently-playing .artist-name');
+     var counter = 0;
+     function next() {
+         var quote = data.dailyQuotes[counter++ % data.dailyQuotes.length]; 
+         console.log(Date.now(), counter, data.dailyQuotes.length, "m2:", counter%2, "m3:", counter%3);
+         elem.hide().text(quote).fadeIn(2000); //.text() takes string and can't pass array
+     }
+     next();
+     window.setInterval(next, 5000); //takes 1st argument as a function
+     
+}
+
+
+// used in StartUp function to render actual text quote under album artist
+ var setCurrentAlbum = function(album) {
+     currentAlbum = album;
+     var $albumTitle = $('.album-view-title');
+     var $albumArtist = $('.album-view-artist');
+
+     $albumArtist.text(album.artist);
+     $albumTitle.text(album.name);
+     
+
+
+ };
+
+
+/*
+var updatePlayerBarSong = function() {
+
+  //  $('.currently-playing .song-name').text(currentSongFromAlbum.name);
+   // $('.currently-playing .artist-name').text(currentAlbum.artist);
+ //   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
+   // $('.main-controls .play-pause').html(playerBarPauseButton);
+
+};*/
+/*
+var createSongRow = function(songNumber, songName, songLength) {
+    //var songLength = new buzz.toTimer(currentSoundFile.getDuration());
+    var template =
+    '<tr class="album-view-song-item">'
+    + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+    + '<td class="song-item-title">' + songName + '</td>'
+ //   + '<td class="song-item-duration">' + filterTimeCode(songLength) + '</td>' 
+    + '</tr>'
+    ;
+};
+*/
+/*
+
 var setSong = function(songNumber) {
     
     if (currentSoundFile) {
@@ -36,16 +115,10 @@ var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]')
 };
 
-var createSongRow = function(songNumber, songName, songLength) {
-    //var songLength = new buzz.toTimer(currentSoundFile.getDuration());
-    var template =
-    '<tr class="album-view-song-item">'
-    + '<td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
-    + '<td class="song-item-title">' + songName + '</td>'
-    + '<td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
-    + '</tr>'
-    ;
- 
+*/
+
+
+ /*
     var $row = $(template);
     
     var clickHandler = function() {
@@ -127,29 +200,13 @@ var createSongRow = function(songNumber, songName, songLength) {
      $row.find('.song-item-number').click(clickHandler);
      $row.hover(onHover, offHover);
      return $row;
- };
+     
+*/
 
 
- var setCurrentAlbum = function(album) {
-     currentAlbum = album;
-     var $albumTitle = $('.album-view-title');
-     var $albumArtist = $('.album-view-artist');
-     var $albumReleaseInfo = $('.album-view-release-info');
-     var $albumImage = $('.album-cover-art');
-     var $albumSongList = $('.album-view-song-list');
- 
-     $albumTitle.text(album.name);
-     $albumArtist.text(album.artist);
-     $albumReleaseInfo.text(album.year + ' ' + album.label);
-     $albumImage.attr('src', album.albumArtUrl);
- 
-     $albumSongList.empty();
- 
-     for (i = 0; i < album.songs.length; i++) {
-         var $newRow = createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
-         $albumSongList.append($newRow);
-     }
- };
+
+/*
+
 
 /// CH 34 update seek bars with time lapse
 
@@ -240,21 +297,18 @@ var setupSeekBars = function() {
      return album.songs.indexOf(song);
  };
 
-var updatePlayerBarSong = function() {
+*/
 
-    $('.currently-playing .song-name').text(currentSongFromAlbum.name);
-    $('.currently-playing .artist-name').text(currentAlbum.artist);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
-    $('.main-controls .play-pause').html(playerBarPauseButton);
-
-};
+/*
 
 // Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 var playerBarPlayButton = '<span class="ion-play"></span>';
 var playerBarPauseButton = '<span class="ion-pause"></span>';
+*/
 
+/*
 // Store state of playing songs
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
@@ -263,7 +317,9 @@ var currentSoundFile = null;
 var currentVolume = 50;
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+*/
 
+/*
 var nextSong = function() {
     
     var getLastSongNumber = function(index) {
@@ -342,16 +398,17 @@ var previousSong = function() {
     
 };
 
+*/
+
+/*
 $(document).ready(function() {
-    setCurrentAlbum(albumPicasso);
-    setupSeekBars();
-    setSong(1); //set default to song #1 on initial load
-    $previousButton.click(previousSong);
-    $nextButton.click(nextSong);
-    $playPause.click(togglePlayFromPlayerBar);
+
+    
+    //randomQuotes2();
 
     
 });
+
 
 ///CH 33 Assignment Make play and pause in player bar responsive
 
@@ -408,4 +465,59 @@ var filterTimeCode = function (timeInSeconds) {
         } else 
             return format_minutes + seconds;
 };
+
+
+var randomQuotes = function() {
     
+     var albumQuotes = [
+         'I Can. I Will. I Must. - Anonymous',
+         'Every Opportunity Has A Shelf Life. - Plato',
+         'Believe In Yourself, You Are The Only One Who Knows Self The Longest. - James Co'
+     ];
+    
+     var rand = albumQuotes[Math.floor(Math.random() * albumQuotes.length)];
+     return rand;
+}
+
+var randomQuotes2 = function() {
+    
+     var albumQuotes = [
+         'I Can. I Will. I Must. - Annoymous',
+         'Every Opportunity Has A Shelf Life. - Plato',
+         'Believe In Yourself, You Are The Only One Who Knows Self The Longest. - James Co'
+     ];
+    
+    
+    $('.currently-playing .artist-name').loadText( albumQuotes, 5000 ); // ( array, interval )
+    document.title = $('.currently-playing .artist-name').text();
+         
+}
+
+*/
+
+/*
+var loopQuotes = function( textArray, interval ) {
+    return this.each( function() {
+        var obj = $(this);
+        obj.fadeOut( 'slow', function() {
+            var elem = textArray[0];
+            obj.empty().html( elem );
+            textArray.shift();
+            textArray.push(elem);
+            obj.fadeIn( 'fast' );
+        });
+        timeOut = setTimeout( function(){ obj.loadText( textArray, interval )}, interval );
+        $("#text-reload").click( function(){ 
+            if( !obj.is(':animated') ) { clearTimeout( timeOut ); obj.loadText( textArray, interval );} // animation check prevents "too much recursion" error in jQuery 
+        });
+    });
+};
+
+
+$(document).ready(function() {
+    var albumQuotes = ["hello", "bonjour", "hola", "konnichiwa", "hujambo", "cześć", "hei", "ciao"];
+    $('#page_title').loadText( albumQuotes, 5000 ); // ( array, interval )
+    document.title = $('#page_title').text();
+});
+
+*/

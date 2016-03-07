@@ -17,17 +17,21 @@ body {
 
 .navbar {
     position: relative;
-    padding: 0.5rem;
+    /*padding: 3rem;  controls the height of nav bar, if no logo 3rem  */
      /* #1 */
-    background-color: rgba(101,18,95,0.5);
+    background-color: dimgrey;
      /* #2 */
     z-index: 1;
 }
 
-.navbar .logo {
+/* controls cube/<> on right hand corner for logos */
+.navbar .fa-code {
     position: relative;
-    left: 2em;
+    left: 2rem;
     cursor: pointer; /*produces the finger-pointer icon when one hovers*/
+    font-size: 5rem;
+    font-weight: 500;
+    color: rgba(101,18,95,0.5);
 }
 
 .navbar .links-container {
@@ -59,7 +63,7 @@ body {
      cursor: pointer;
 }
  
-   /* #5 */
+   /* #5 change color to purple when hovering text*/
 .links-container .navbar-link:hover {
      color: rgb(233,50,117);
 }
@@ -75,7 +79,7 @@ body {
      margin: 0 auto;
      max-width: 64rem;
  }
-
+  
     
 /* added by exercise 10 album view */
     

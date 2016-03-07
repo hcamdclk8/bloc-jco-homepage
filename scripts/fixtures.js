@@ -1,16 +1,16 @@
  // Example Album CH 25
  var albumPicasso = {
-     name: 'The Colors',
-     artist: 'Pablo Picasso',
-     label: 'Cubism',
-     year: '1881',
+     name: 'JAMES CO JR',
+     artist: 'FRONT END DEVELOPER',
+     label: '',
+     year: '',
      albumArtUrl: 'assets/images/album_covers/01.png',
      songs: [
-         { name: 'Blue', length: 161.71, audioUrl: '/assets/music/blue' },
-         { name: 'Green', length: 103.96, audioUrl: '/assets/music/green' },
-         { name: 'Red', length: 268.45, audioUrl: '/assets/music/red' },
-         { name: 'Pink', length: 153.14, audioUrl: '/assets/music/pink' },
-         { name: 'Magenta', length: 374.22, audioUrl: '/assets/music/magenta' } 
+         { name: 'Self Destruction To-Do List App', length: 200, audioUrl: '/assets/music/blue' },
+         { name: 'Radio Player App', length: 103.96, audioUrl: '/assets/music/green' },
+         { name: 'Fibonnacci Calculator App', length: 268.45, audioUrl: '/assets/music/red' },
+         { name: 'Amazon ECHO plug-in App', length: 153.14, audioUrl: '/assets/music/pink' },
+         { name: 'Show Me The Money App', length: 374.22, audioUrl: '/assets/music/magenta' } 
      ]
  };
  
@@ -48,3 +48,7 @@
          { name: 'Pretender', length: '5:15'}
      ]
  };
+
+
+
+ 

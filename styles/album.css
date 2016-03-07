@@ -1,10 +1,10 @@
  body.album {
-     background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+     background-image: url(../assets/images/blurred_backgrounds/10.png); 
      background-repeat: no-repeat;
      background-attachment: fixed;
      background-position: center center;
      background-size: cover;
-     padding-bottom: 200px; /*supports player bar at bottom*/
+     padding-bottom: 200px; /*supports player bar at bottom */
  }
  
  .album-cover-art {
@@ -19,20 +19,104 @@
      top: 1.5rem;
      padding: 1rem;
  }
+
+/* temp text for under construction */
+ul { text-align: center;}
  
- .album-view-details .album-view-title {
-     font-weight: 300;
-     font-size: 2rem;
+/* James Co */
+ .album-view-title {
+     font-weight: 700;
+     font-size: 50px; /*2rem;*/
+     letter-spacing: 5px;
+     margin: 10px;
+     opacity: .6;
+     color: rgba(0, 0, 0, 0.6);
+     text-align: center; 
+ animation: fadein 2s;
+         -moz-animation: fadein 2s; /* Firefox */
+   -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+     
+   /*transition: all 1s;*/
+ }
+
+
+ 
+/* Front End Developer */
+.album-view-artist {
+   /* font-weight: 300; */
+  /*   font-size: 1.5rem; */
+     text-align: center;
+    width: 315px;
+    padding: 10px;
+    margin: 0 auto;  /* center the box */
+    border: 1px solid rgb(0,0,0);
+    background-color: rgb(0,0,0);
+    opacity: .6;
+    font-size: 16px; 
+    letter-spacing: 5px;
+    color: white;
+    animation: fadein 2s;
+         -moz-animation: fadein 2s; /* Firefox */
+   -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+     /*transition: all 0.5s;*/
  }
  
- .album-view-details .album-view-artist {
-     font-weight: 300;
-     font-size: 1.5rem;
- }
- 
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:.6;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:.6;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:.6;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: .6;
+    }
+}
+
+/* format the icon skill set */
+.ion-social-html5,
+.ion-social-css3,
+.ion-ion-phone,
+.fa fa-code,
+.ion-social-javascript,
+.ion-social-angular,
+.ion-social-github,
+.ion-social-nodejs {
+    font-size: 5rem;
+     margin: 10px;
+    padding-left: 130px;
+    color: rgba(101,18,95,0.5);
+}
+
+
  .album-view-details .album-view-release-info {
-     font-weight: 300;
+     font-weight: 700;
      font-size: 0.75rem;
+     margin: 40px;
+     text-align: left;
  }
 
 /* styling the song list in CH 10 */
@@ -120,3 +204,4 @@
          margin: auto;
      }
  }
+
