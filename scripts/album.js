@@ -10,6 +10,7 @@ function startUp () {
 // set up the quotes in an array as part of an object 
 var data = {
     dailyQuotes: [
+         'Learning is an opportunity rather than a roadblock.',
          'I Can. I Will. I Must.',
          'Every opportunity has a shelf life.',
          'Believe in yourself, you are the only one who knows self the longest.',
@@ -20,7 +21,9 @@ var data = {
          'A journey of a thousand miles begins with a single step.',
          'Try and try until you succeed.',
          'Enjoy the \'present\', it is a gift after all.',
-         'If a man knows not what habor he seeks, no amount of light will be enough to guide him.'
+         'If a man knows not what habor he seeks, no amount of light will be enough to guide him.',
+         'Anybody can make something complex but it takes a genius to make something simple.',
+         'In seeking happiness for others, you will find it in yourself.'
          ],
     magicNumber: 7
 }
